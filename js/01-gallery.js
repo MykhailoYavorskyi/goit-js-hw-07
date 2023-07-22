@@ -22,4 +22,18 @@ listRef.addEventListener("click", onClick);
 
 function onClick(e) {
   e.preventDefault();
+
+  const instance = basicLightbox.create(`<img src="${e.target.dataset.source}"/>`);
+  instance.show();
+
+  if (instance.visible()) {
+    listRef.addEventListener("keydown", onEsc);
+  }
+
+  function onEsc(e) {
+    if (e.code === "Escape") {
+      listRef.removeEventListener("keydown", onEsc);
+      instance.close();
+    }
+  }
 }
