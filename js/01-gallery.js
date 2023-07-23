@@ -22,6 +22,7 @@ listRef.addEventListener("click", onClick);
 
 function onClick(e) {
   e.preventDefault();
+  if (e.target === e.currentTarget) return;
 
   const instance = basicLightbox.create(`<img src="${e.target.dataset.source}"/>`);
   instance.show();
